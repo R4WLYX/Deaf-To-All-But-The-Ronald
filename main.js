@@ -4,7 +4,7 @@ const title = document.querySelector(".menu-title");
 const playButton = document.querySelector(".play-button");
 const counter = document.querySelector(".counter");
 const congrtas = document.querySelector(".bro-won");
-
+const liveCounter = document.querySelector(".lives");
 let mouseX = 0;
 let mouseY = 0;
 
@@ -13,7 +13,12 @@ function sleep(ms) {
 }
 
 function start() {
-    playButton.addEventListener('click', playVideo);
+    document.addEventListener('keydown', function(event) {
+        if (event.keyCode == 32) {
+            document.removeEventListener('keydown', playVideo);
+            playVideo();
+        }
+    });
     document.addEventListener('mousemove', function(event) {
         mouseX = event.clientX;
         mouseY = event.clientY;
@@ -21,6 +26,7 @@ function start() {
     video.addEventListener('ended', function(event) {
         video.style.display = "none";
         congrtas.style.display = "block";
+        liveCounter.style.display = "none";
     });
 }
 
@@ -28,6 +34,7 @@ async function playVideo() {
     title.style.display = "none";
     playButton.style.display = "none";
     counter.style.display = "block";
+    liveCounter.style.display = "block";
 
     for (let i = 3; i >= 1; i--) {
         counter.innerHTML = i;
