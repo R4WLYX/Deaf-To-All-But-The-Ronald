@@ -1,0 +1,139 @@
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap');
+
+body {
+    margin: 0;
+    background-color: black;
+    overflow: hidden;
+}
+
+.gui-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+}
+
+.lives {
+    user-select: none;
+    position: fixed;
+    top: 0;
+    left: 30px;
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 24px;
+    text-align: center;
+    color: white;
+}
+
+.win-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.bro-won {
+    user-select: none;
+    position: fixed;
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 64px;
+    text-align: center;
+    display: none;
+    color: white;
+}
+
+.video-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.fullscreen-video {
+    position: fixed;
+    object-fit: contain;
+    width: 100%;
+    height: 100%;
+}
+
+.cover {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.75);
+}
+
+.menu-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.menu-title {
+    user-select: none;
+    position: fixed;
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 48px;
+    text-align: center;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.4);
+    top: 15%;
+    padding: 6px 16px;
+    border-radius: 20px;
+}
+
+.play-button {
+    position: fixed;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100%;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.35);
+    border: 0;
+}
+
+.play-button:hover {
+    background-color: rgba(153, 153, 153, 0.35);
+    cursor: pointer;
+}
+
+.play-button img {
+    position: fixed;
+    width: 25px;
+    height: 25px;
+}
+
+.counter {
+    user-select: none;
+    position: fixed;
+    width: 50px;
+    height: 50px;
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 64px;
+    text-align: center;
+    display: none;
+    color: white;
+    transform: translateY(-50%);
+}
