@@ -113,7 +113,18 @@ body {
     color: white;
 }
 
-.play-button {
+.live-info {
+    user-select: none;
+    position: fixed;
+    top: 50%;
+    transform: translateY(20px);
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 10px;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.play-info {
     user-select: none;
     position: fixed;
     top: 100%;
@@ -122,12 +133,6 @@ body {
     font-size: 10px;
     text-align: center;
     color: rgba(255, 255, 255, 0.4);
-}
-
-.play-button img {
-    position: fixed;
-    width: 40px;
-    height: 40px;
 }
 
 .counter {

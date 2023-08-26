@@ -1,7 +1,8 @@
 const video = document.querySelector(".fullscreen-video");
 const cover = document.querySelector(".cover");
 const title = document.querySelector(".menu-title");
-const playButton = document.querySelector(".play-button");
+const liveInfo = document.querySelector(".live-info");
+const playInfo = document.querySelector(".play-info");
 const counter = document.querySelector(".counter");
 const congrtas = document.querySelector(".bro-won");
 const liveCounter = document.querySelector(".lives");
@@ -32,7 +33,8 @@ function start() {
 
 async function playVideo() {
     title.style.display = "none";
-    playButton.style.display = "none";
+    liveInfo.style.display = "none";
+    playInfo.style.display = "none";
     counter.style.display = "block";
     liveCounter.style.display = "block";
 
