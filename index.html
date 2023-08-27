@@ -8,22 +8,32 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body onload="start()">
-    <div class="win-container">
-        <p class="bro-won">Congratulations!!</p>
-    </div>
     <div class="video-container">
-        <video class="fullscreen-video" style="display: block;">
+        <video class="fullscreen-video">
             <source src="res/video-game.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
+        <canvas id="canvas" class="fullscreen-canvas"></canvas>
         <div class="cover"></div>
     </div>
     <div class="menu-container">
-        <div class="title-container">
-            <p class="menu-title">Deaf To All But Ronald</p><br>
-            <p class="live-info">Stay in the white. When your live hits 0 you're dead</p><br>
-            <p class="play-info">Press SPACE To Start</p>
-        </div>
+        <p class="menu-title">
+            Deaf To All But Ronald
+            <p class="play-info">
+                Press SPACE To Start
+            </p>
+        </p>
+        <p class="live-info">
+            Stay on the white. When your live hits 0 you're dead
+        </p>
+
+        <p class="bro-won">
+            Congratulations!!
+            <p class="replay-info">
+                Press SPACE To Replay
+            </p>
+        </p>
+
         <p class="counter">3</p>
     </div>
     <div class="gui-container">
