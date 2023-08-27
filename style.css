@@ -53,7 +53,7 @@ body {
     pointer-events: none;
 }
 
-.fullscreen-video {
+.fullscreen-canvas {
     display: none;
 }
 
