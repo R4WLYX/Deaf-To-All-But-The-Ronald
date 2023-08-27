@@ -44,7 +44,8 @@ body {
 }
 
 .fullscreen-video, .fullscreen-canvas {
-    position: fixed;
+    object-fit: contain;
+    position: absolute;
     top: 0;
     left: 0;
     width: 100%;
