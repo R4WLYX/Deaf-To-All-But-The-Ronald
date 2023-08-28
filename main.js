@@ -90,6 +90,7 @@ function reset() {
 
     timeout = 0;
     lives = 3;
+    liveCounter.innerHTML = "Lives: " + lives;
 }
 
 async function playVideo() {
