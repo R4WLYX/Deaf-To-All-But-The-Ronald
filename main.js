@@ -12,29 +12,15 @@ const liveCounter = document.querySelector(".lives");
 let ctx = canvas.getContext("2d");
 let mouseX, mouseY;
 let videoDrawWidth, videoDrawHeight, videoX, videoY;
+let timeout = 0;
+let lives = 3;
 
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
 function start() {
-    const videoWidth = video.videoWidth;
-    const videoHeight = video.videoHeight;
-    
-    const canvasAspect = canvas.width / canvas.height;
-    const videoAspect = videoWidth / videoHeight;
-
-    if (videoAspect > canvasAspect) {
-        videoDrawWidth = canvas.width;
-        videoDrawHeight = canvas.width / videoAspect;
-        videoX = 0;
-        videoY = (canvas.height - videoDrawHeight) / 2;
-    } else {
-        videoDrawHeight = canvas.height;
-        videoDrawWidth = canvas.height * videoAspect;
-        videoX = (canvas.width - videoDrawWidth) / 2;
-        videoY = 0;
-    }
+    updateDemensions();
 
     ctx.drawImage(video, videoX, videoY, videoDrawWidth, videoDrawHeight);
 
@@ -72,7 +58,28 @@ function start() {
     });
 }
 
+function updateDemensions() {
+    const videoWidth = video.videoWidth;
+    const videoHeight = video.videoHeight;
+    
+    const canvasAspect = canvas.width / canvas.height;
+    const videoAspect = videoWidth / videoHeight;
+
+    if (videoAspect > canvasAspect) {
+        videoDrawWidth = canvas.width;
+        videoDrawHeight = canvas.width / videoAspect;
+        videoX = 0;
+        videoY = (canvas.height - videoDrawHeight) / 2;
+    } else {
+        videoDrawHeight = canvas.height;
+        videoDrawWidth = canvas.height * videoAspect;
+        videoX = (canvas.width - videoDrawWidth) / 2;
+        videoY = 0;
+    }
+}
+
 function resetStyles() {
+    congrtas.innerHTML = "Congratulations!!";
     counter.style.display = "none";
     congrtas.style.display = "none";
     replayInfo.style.display = "none";
@@ -99,15 +106,49 @@ async function playVideo() {
 
 function mainLoop() {
     if (video.paused || video.ended) { return; }
+    updateDemensions();
+
     ctx.drawImage(video, videoX, videoY, videoDrawWidth, videoDrawHeight);
 
-    const pixel = ctx.getImageData(mouseX, mouseY, 1, 1).data;
+    const pixel = ctx.getImageData(mouseX/window.innerWidth * canvas.width, mouseY/window.innerHeight * canvas.height, 1, 1).data;
 
     const red = pixel[0];
     const green = pixel[1];
     const blue = pixel[2];
+    const luminance = 0.299*red + 0.587*green + 0.114*blue;
 
-    console.log("r:", red, "g:", green, "b:", blue);
+    if (luminance < 200 && timeout <= 0) {
+        lives -= 1;
+        liveCounter.innerHTML = "Lives: " + lives;
+        timeout = 50;
+    } else {
+        timeout--;
+    }
+
+    if (lives <= 0) {
+        death();
+    }
 
     requestAnimationFrame(mainLoop);
 };
+
+function death() {
+    congrtas.innerHTML = "Game Over";
+    cover.style.display = "block";
+    congrtas.style.display = "block";
+    replayInfo.style.display = "block";
+    liveCounter.style.display = "none";
+
+    video.pause();
+
+    document.addEventListener("keydown", function handler(event) {
+        if (event.keyCode != 32) { return; }
+        event.currentTarget.removeEventListener("keydown", handler);
+
+        video.currentTime = 0;
+        video.pause();
+
+        resetStyles();
+        playVideo();
+    });
+}
