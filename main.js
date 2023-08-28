@@ -13,6 +13,8 @@ let ctx = canvas.getContext("2d");
 let mouseX, mouseY;
 let videoDrawWidth, videoDrawHeight, videoX, videoY;
 let timeout = 0;
+let debounceTime = 50;
+let treshold = 180;
 let lives = 3;
 
 function sleep(ms) {
@@ -117,10 +119,10 @@ function mainLoop() {
     const blue = pixel[2];
     const luminance = 0.299*red + 0.587*green + 0.114*blue;
 
-    if (luminance < 200 && timeout <= 0) {
+    if (luminance < treshold && timeout <= 0) {
         lives -= 1;
         liveCounter.innerHTML = "Lives: " + lives;
-        timeout = 50;
+        timeout = debounceTime;
     } else {
         timeout--;
     }
