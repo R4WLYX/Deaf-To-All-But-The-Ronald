@@ -12,9 +12,10 @@ const liveCounter = document.querySelector(".lives");
 let ctx = canvas.getContext("2d");
 let mouseX, mouseY;
 let videoDrawWidth, videoDrawHeight, videoX, videoY;
+
+const debounceTime = 50;
+const treshold = 190;
 let timeout = 0;
-let debounceTime = 50;
-let treshold = 180;
 let lives = 3;
 
 function sleep(ms) {
@@ -54,7 +55,7 @@ function start() {
             video.currentTime = 0;
             video.pause();
 
-            resetStyles();
+            reset();
             playVideo();
         });
     });
@@ -80,12 +81,15 @@ function updateDemensions() {
     }
 }
 
-function resetStyles() {
+function reset() {
     congrtas.innerHTML = "Congratulations!!";
     counter.style.display = "none";
     congrtas.style.display = "none";
     replayInfo.style.display = "none";
     liveCounter.style.display = "none";
+
+    timeout = 0;
+    lives = 3;
 }
 
 async function playVideo() {
@@ -141,16 +145,14 @@ function death() {
     replayInfo.style.display = "block";
     liveCounter.style.display = "none";
 
+    video.currentTime = 0;
     video.pause();
 
     document.addEventListener("keydown", function handler(event) {
         if (event.keyCode != 32) { return; }
         event.currentTarget.removeEventListener("keydown", handler);
 
-        video.currentTime = 0;
-        video.pause();
-
-        resetStyles();
+        reset();
         playVideo();
     });
 }
