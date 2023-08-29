@@ -146,13 +146,14 @@ function death() {
     replayInfo.style.display = "block";
     liveCounter.style.display = "none";
 
-    video.currentTime = 0;
-    video.pause();
-
     document.addEventListener("keydown", function handler(event) {
         if (event.keyCode != 32) { return; }
         event.currentTarget.removeEventListener("keydown", handler);
 
+        video.currentTime = 0;
+        video.pause();
+        ctx.drawImage(video, videoX, videoY, videoDrawWidth, videoDrawHeight);
+        
         reset();
         playVideo();
     });
