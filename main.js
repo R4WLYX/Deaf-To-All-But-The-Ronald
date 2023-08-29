@@ -13,7 +13,7 @@ let ctx = canvas.getContext("2d");
 let mouseX, mouseY;
 let videoDrawWidth, videoDrawHeight, videoX, videoY;
 
-const debounceTime = 50;
+const debounceTime = 10;
 const treshold = 190;
 let timeout = 0;
 let lives = 3;
